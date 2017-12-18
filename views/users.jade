@@ -1,0 +1,29 @@
+extends layout
+
+block content
+  
+  .container
+    .row
+      .col-sm-12
+        
+        section.add-user
+          h1 #{addTitle}
+          
+          form#formAddUser(name="adduser",method="post",action="/adduser")
+            .form-row
+              label.col-form-label(for="inputUserName") Name
+              .col
+                input#inputUserName.form-control(type="text", placeholder="Name", name="name")
+              label.col-form-label(for="inputUserEmail") Email
+              .col
+                input#inputUserEmail.form-control(type="text", placeholder="Email", name="email")
+              .col
+                button#btnSubmit.btn.btn-primary(type="submit") Submit
+        
+        section.user-list
+          h1 #{title}
+          ul.list-group
+            each user in users
+              li.list-group-item
+                span #{user.name} | 
+                a(href="mailto:#{user.email}") #{user.email}
